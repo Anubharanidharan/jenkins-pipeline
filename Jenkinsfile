@@ -13,7 +13,7 @@ pipeline{
 				echo "Build Id -> $env.BUILD_ID"
 				echo "Job Name -> $env.JOB_NAME"
 				echo "Build Tag Name -> $env.BUILD_TAG"
-				echo "Build URL -> $env.BUILD_TAG" 
+				echo "Build URL -> $env.BUILD_URL" 
 			}
 		}
 		stage ('Test') {
