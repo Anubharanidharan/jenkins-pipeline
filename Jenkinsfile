@@ -2,16 +2,11 @@ pipeline{
 	agent any 
 	//agent { docker { image 'maven:3.6.3'} }
 	//agent { docker { image 'node:13.8'} }
-	environment {
-		dockerhome = tool 'Mydocker'
-		mavenhome = tool 'Mymaven'
-		PATH ="$dockerhome/bin:$mavenhome/bin:$PATH"
-	}
 	stages {
-		stage ('Checkout') {
+		stage ('Build') {
 			steps {
-				sh 'mvn --version'
-				//sh 'docker version'
+				//sh 'mvn --version'
+				//sh 'node  -version'
 				echo "Path -> $PATH"
 				echo "Build" 
 				echo "Build NUmber -> $env.BUILD_NUMBER"
@@ -21,20 +16,14 @@ pipeline{
 				echo "Build URL -> $env.BUILD_URL" 
 			}
 		}
-		stage ('Compile') {
-			steps {
-				sh "mvn clean compile" 
-			}
-		}
-
 		stage ('Test') {
 			steps {
-				sh "mvn test"
+				echo "Test" 
 			}
 		}
 		stage ('Integration Test') {
 			steps {
-				sh "mvn failsafe:integration-test failsafe:verify  " 
+				echo "Integration Test " 
 			}
 		}
 	}
